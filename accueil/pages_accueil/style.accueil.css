@@ -1,10 +1,10 @@
 body {
     background-image: url("../images_accueil/img.png");
-    background-repeat: no-repeat; /* pour ne pas que l'img soit en mosaique*/
+    background-repeat: no-repeat;
     background-size: cover;
     height: 100vh;
     margin: 0;
-    overflow: hidden; /*pour ne pas avoir la possibilité descroller*/
+    overflow: hidden;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,51 +17,38 @@ body {
         align-self: flex-start;   
     }
 
-    .menu {
+    /* Style commun pour le menu et l'espace gestionnaire (blocs agrandis) */
+    .menu, .gestionnaire {
         background-color: rgba(128, 128, 128, 0.7);
-        padding: 40px 60px;
+        padding: 30px 20px; /* Bloc plus grand */
         border-radius: 15px;
         display: flex;
         flex-direction: column;
-        gap: 60px;
+        gap: 20px;
         text-align: center;
-        margin: 50px 0 0 0 ;
+        margin-top: 30px;
+        min-width: 350px; /* Largeur minimale augmentée */
 
         a {
+            display: block;
+            background-color: rgba(80, 80, 80, 0.75); /* Gris transparent un peu plus foncé */
+            padding: 16px 30px;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2); /* Légère bordure élégante */
             text-decoration: none;
-            color: #000000;
-            font-size: 24px;
-            font-weight: bold;
-            transition: opacity 0.1s;
-        }
-
-        a:hover {
-            color: #ffffff;
-            opacity: 1; 
-            transition: color 0.5s ease, opacity 0.1s ease;
-        }
-    }
-
-    .gestionnaire {
-        background-color: rgba(128, 128, 128, 0.7);
-        padding: 20px 40px;
-        border-radius: 15px;
-        text-align: center;
-        margin-top : 40px;
-        margin-bottom: 40px;   
-
-        a {
-            text-decoration: none;
-            color: #000000;
+            color: #ffffff; /* Texte en blanc pour contraster avec le fond gris foncé */
             font-size: 20px;
             font-weight: bold;
-            transition: opacity 0.2s;
+            font-family: 'Pochoir Allerta', serif;
+            transition: 0.3s ease;
+            width: 200px;
+            margin: 0 auto;
         }
 
         a:hover {
+            background-color: rgba(50, 50, 50, 0.9); /* Encore un peu plus foncé au survol */
             color: #ffffff;
-            opacity: 1;
-            transition: color 0.5s ease, opacity 0.5s ease;
+            transform: translateY(-2px);
         }
-    }    
+    }
 }
