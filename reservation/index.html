@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="fr" class="h-full">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Réservations Maritimes</title>
+
+    <!-- Framework CSS Tailwind + Configuration personnalisée -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="assets/js/config/tailwind.config.js"></script>
+
+    <!-- Police Google Fonts Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&display=swap" rel="stylesheet">
+
+    <!-- Feuille de style personnalisée -->
+    <link rel="stylesheet" href="assets/css/style.css">
+</head>
+<body class="min-h-screen flex flex-col justify-between relative selection:bg-ocean-300 selection:text-ocean-950">
+
+    <!-- Arrière-plan animé en Canvas (vagues bleues fluides) -->
+    <canvas id="bg-canvas"></canvas>
+
+    <!-- Conteneur principal de l'application -->
+    <div class="relative z-10 flex-1 flex flex-col max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 md:py-10">
+        
+        <!-- En-tête de la page -->
+        <header class="mb-6 md:mb-8 flex items-center justify-between">
+            <h1 class="text-3xl md:text-4xl font-bold tracking-tight text-white drop-shadow-md">
+                Réservations
+            </h1>
+            <div class="hidden sm:flex items-center space-x-2 text-xs font-semibold uppercase tracking-wider text-ocean-300 bg-ocean-900/80 px-3 py-1.5 rounded-full border border-ocean-700/50 backdrop-blur">
+                <svg class="w-4 h-4 text-ocean-300 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+                </svg>
+                <span>Lignes Maritimes Méditerranée</span>
+            </div>
+        </header>
+
+        <!-- Mise en page principale (2 colonnes) -->
+        <main class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start flex-1">
+            
+            <!-- COLONNE DE GAUCHE : Formulaire de recherche (5 colonnes) -->
+            <section class="lg:col-span-5 flex flex-col space-y-4">
+                <form id="search-form" class="space-y-4" novalidate>
+                    
+                    <!-- Groupe 1 : Ports -->
+                    <div class="space-y-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                            <div class="pill-label flex items-center justify-between">
+                                <span>Port de départ</span>
+                            </div>
+                            <div class="select-wrapper">
+                                <select id="depart-port" class="pill-input cursor-pointer" required>
+                                    <option value="" disabled selected>--Choisir un port--</option>
+                                    <option value="Marseille">Marseille</option>
+                                    <option value="Toulon">Toulon</option>
+                                    <option value="Nice">Nice</option>
+                                    <option value="Ajaccio">Ajaccio</option>
+                                    <option value="Bastia">Bastia</option>
+                                    <option value="Porto-Vecchio">Porto-Vecchio</option>
+                                    <option value="Calvi">Calvi</option>
+                                    <option value="L'Île-Rousse">L'Île-Rousse</option>
+                                    <option value="Barcelone">Barcelone</option>
+                                    <option value="Gênes">Gênes</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                            <div class="pill-label flex items-center justify-between">
+                                <span>Port d'arrivée</span>
+                            </div>
+                            <div class="select-wrapper">
+                                <select id="arrivee-port" class="pill-input cursor-pointer" required>
+                                    <option value="" disabled selected>--Choisir un port--</option>
+                                    <option value="Marseille">Marseille</option>
+                                    <option value="Toulon">Toulon</option>
+                                    <option value="Nice">Nice</option>
+                                    <option value="Ajaccio">Ajaccio</option>
+                                    <option value="Bastia">Bastia</option>
+                                    <option value="Porto-Vecchio">Porto-Vecchio</option>
+                                    <option value="Calvi">Calvi</option>
+                                    <option value="L'Île-Rousse">L'Île-Rousse</option>
+                                    <option value="Barcelone">Barcelone</option>
+                                    <option value="Gênes">Gênes</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-ocean-700/40 my-2"></div>
+
+                    <!-- Groupe 2 : Passagers -->
+                    <div class="space-y-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                            <div class="pill-label flex items-center justify-between">
+                                <span>Nombre d'adulte</span>
+                            </div>
+                            <div>
+                                <input type="number" id="nb-adultes" min="0" max="10" value="1" placeholder="0" class="pill-input text-center sm:text-left" required>
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                            <div class="pill-label flex items-center justify-between">
+                                <span>Nombre junior</span>
+                                <span class="text-[10px] opacity-75 font-normal">(12-25 ans)</span>
+                            </div>
+                            <div>
+                                <input type="number" id="nb-juniors" min="0" max="10" value="0" placeholder="0" class="pill-input text-center sm:text-left">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                            <div class="pill-label flex items-center justify-between">
+                                <span>Nombre d'enfant</span>
+                                <span class="text-[10px] opacity-75 font-normal">(&lt; 12 ans)</span>
+                            </div>
+                            <div>
+                                <input type="number" id="nb-enfants" min="0" max="10" value="0" placeholder="0" class="pill-input text-center sm:text-left">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-ocean-700/40 my-2"></div>
+
+                    <!-- Groupe 3 : Véhicule -->
+                    <div class="space-y-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                            <div class="pill-label flex items-center justify-between">
+                                <span>Type véhicule</span>
+                            </div>
+                            <div class="select-wrapper">
+                                <select id="type-vehicule" class="pill-input cursor-pointer">
+                                    <option value="none">Aucun véhicule</option>
+                                    <option value="citadine">Voiture citadine (&lt; 4m)</option>
+                                    <option value="berline">Berline / SUV (4m - 5m)</option>
+                                    <option value="moto">Moto / Scooter</option>
+                                    <option value="camping-car">Camping-car / Fourgon</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="border-t border-ocean-700/40 my-2"></div>
+
+                    <!-- Groupe 4 : Période et dates -->
+                    <div class="space-y-3">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 sm:gap-3">
+                            <div class="pill-label flex items-center justify-between">
+                                <span>Période</span>
+                            </div>
+                            <div class="relative flex items-center">
+                                <input type="date" id="date-depart" class="pill-input cursor-pointer pr-10" required>
+                                <div class="absolute right-3 pointer-events-none text-ocean-300">
+                                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+                                    </svg>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Bouton d'action : Valider -->
+                    <div class="pt-4 flex justify-center">
+                        <button type="submit" class="pill-button w-full sm:w-48 text-center flex items-center justify-center space-x-2">
+                            <span>Valider</span>
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M14 5l7 7m0 0l-7 7m7-7H3"></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                </form>
+            </section>
+
+            <!-- COLONNE DE DROITE : Panneau des résultats (7 colonnes) -->
+            <section class="lg:col-span-7 h-full flex flex-col">
+                <div class="results-panel flex-1 min-h-[540px] p-4 sm:p-6 flex flex-col justify-between relative overflow-hidden">
+                    
+                    <!-- En-tête du panneau -->
+                    <div class="text-center pt-2 pb-4 border-b border-ocean-600/50">
+                        <h2 class="text-lg sm:text-xl font-bold italic text-white tracking-wide">
+                            Présentation des réservations possibles
+                        </h2>
+                    </div>
+
+                    <!-- Zone de contenu interne du panneau -->
+                    <div id="results-container" class="flex-1 py-4 my-2 overflow-y-auto custom-scroll max-h-[580px] space-y-4">
+                        
+                        <!-- État initial par défaut -->
+                        <div id="placeholder-state" class="h-full flex flex-col items-center justify-center text-center p-6 space-y-4 text-ocean-200/80 my-auto">
+                            <div class="w-20 h-20 rounded-full bg-ocean-800/80 border border-ocean-600 flex items-center justify-center text-ocean-300 shadow-inner">
+                                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10"></path>
+                                </svg>
+                            </div>
+                            <div class="max-w-md space-y-2">
+                                <h3 class="text-lg font-semibold text-white">Prêt à appareiller ?</h3>
+                                <p class="text-sm text-blue-100/70 leading-relaxed">
+                                    Veuillez choisir votre port de départ, d'arrivée ainsi que votre date de voyage dans le formulaire de gauche, puis cliquez sur <strong class="text-white">« Valider »</strong>.
+                                </p>
+                            </div>
+                            <!-- Liaisons rapides -->
+                            <div class="pt-4 flex flex-wrap justify-center gap-2 text-xs">
+                                <span data-depart="Marseille" data-arrivee="Ajaccio" class="quick-route-btn bg-ocean-800/60 text-ocean-300 px-3 py-1 rounded-full border border-ocean-600/40 cursor-pointer hover:bg-ocean-700 transition">Marseille ➔ Ajaccio</span>
+                                <span data-depart="Toulon" data-arrivee="Bastia" class="quick-route-btn bg-ocean-800/60 text-ocean-300 px-3 py-1 rounded-full border border-ocean-600/40 cursor-pointer hover:bg-ocean-700 transition">Toulon ➔ Bastia</span>
+                                <span data-depart="Nice" data-arrivee="Calvi" class="quick-route-btn bg-ocean-800/60 text-ocean-300 px-3 py-1 rounded-full border border-ocean-600/40 cursor-pointer hover:bg-ocean-700 transition">Nice ➔ Calvi</span>
+                            </div>
+                        </div>
+
+                        <!-- Liste dynamique des offres -->
+                        <div id="offers-list" class="hidden space-y-3"></div>
+
+                        <!-- Alerte d'erreur -->
+                        <div id="error-alert" class="hidden p-4 rounded-lg bg-red-900/60 border border-red-500/50 text-red-100 text-sm animate-fade-in flex items-center space-x-3">
+                            <svg class="w-6 h-6 flex-shrink-0 text-red-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z"></path>
+                            </svg>
+                            <span id="error-message">Message d'erreur</span>
+                        </div>
+
+                    </div>
+
+                    <!-- Bouton de confirmation finale -->
+                    <div class="pt-4 border-t border-ocean-600/50 flex justify-center">
+                        <button type="button" id="btn-confirm-booking" class="pill-button px-8 py-2.5 text-center flex items-center space-x-2 text-sm sm:text-base">
+                            <svg class="w-5 h-5 text-ocean-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path>
+                            </svg>
+                            <span>Valider la réservation</span>
+                        </button>
+                    </div>
+
+                </div>
+            </section>
+        </main>
+        
+        <footer class="mt-8 text-center text-xs text-ocean-400/60">
+            &copy; 2026 Cie Maritime Méditerranée &bull; Tous droits réservés &bull; Réservation directe sécurisée
+        </footer>
+    </div>
+
+    <!-- Fenêtre modale de confirmation -->
+    <div id="booking-modal" class="fixed inset-0 z-50 flex items-center justify-center p-4 bg-ocean-950/80 backdrop-blur-md opacity-0 pointer-events-none transition-all duration-300">
+        <div class="bg-ocean-900 border border-ocean-500/30 rounded-2xl max-w-lg w-full p-6 sm:p-8 shadow-2xl transform scale-95 transition-all duration-300 relative text-white" id="modal-card">
+            
+            <button type="button" data-close-modal class="absolute top-4 right-4 text-ocean-300 hover:text-white p-2 rounded-full hover:bg-ocean-800 transition">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                </svg>
+            </button>
+
+            <div class="text-center space-y-3">
+                <div class="w-16 h-16 bg-emerald-500/20 text-emerald-400 border border-emerald-500/40 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M5 13l4 4L19 7"></path>
+                    </svg>
+                </div>
+                <h3 class="text-2xl font-bold text-white">Réservation Confirmée !</h3>
+                <p class="text-xs text-ocean-300 font-mono tracking-wider">DOSSIER N° <span id="modal-ref-num" class="text-sky-300 font-bold">#MAR-2026-X8F9</span></p>
+            </div>
+
+            <div class="my-6 p-4 rounded-xl bg-ocean-800/80 border border-ocean-700/60 space-y-3 text-sm">
+                <div class="flex justify-between items-center pb-2 border-b border-ocean-700">
+                    <span class="text-ocean-300 font-medium">Navire</span>
+                    <span id="modal-ship" class="font-semibold text-white">-</span>
+                </div>
+                <div class="flex justify-between items-center pb-2 border-b border-ocean-700">
+                    <span class="text-ocean-300 font-medium">Itinéraire</span>
+                    <span id="modal-route" class="font-semibold text-white">-</span>
+                </div>
+                <div class="flex justify-between items-center pb-2 border-b border-ocean-700">
+                    <span class="text-ocean-300 font-medium">Date & Horaire</span>
+                    <span id="modal-datetime" class="font-semibold text-white">-</span>
+                </div>
+                <div class="flex justify-between items-center pb-2 border-b border-ocean-700">
+                    <span class="text-ocean-300 font-medium">Passagers & Véhicule</span>
+                    <span id="modal-passengers" class="font-semibold text-white text-right">-</span>
+                </div>
+                <div class="flex justify-between items-center pt-1 text-base font-bold">
+                    <span class="text-sky-300">Total réglé TTC</span>
+                    <span id="modal-total-price" class="text-emerald-400 text-lg">-</span>
+                </div>
+            </div>
+
+            <div class="flex flex-col sm:flex-row gap-3">
+                <button type="button" id="btn-print-ticket" class="flex-1 py-3 px-4 rounded-xl bg-ocean-800 hover:bg-ocean-700 text-white font-semibold text-sm transition border border-ocean-600/50 flex items-center justify-center space-x-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 17h2a2 2 0 002-2v-4a2 2 0 00-2-2H5a2 2 0 00-2 2v4a2 2 0 002 2h2m2 4h6a2 2 0 002-2v-4a2 2 0 00-2-2H9a2 2 0 00-2 2v4a2 2 0 002 2zm8-12V5a2 2 0 00-2-2H9a2 2 0 00-2 2v4h10z"></path>
+                    </svg>
+                    <span>Imprimer billet</span>
+                </button>
+                <button type="button" data-close-modal class="flex-1 py-3 px-4 rounded-xl bg-sky-500 hover:bg-sky-400 text-ocean-950 font-bold text-sm transition flex items-center justify-center">
+                    <span>Nouvelle recherche</span>
+                </button>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Point d'entrée JavaScript (Module ES6) -->
+    <script type="module" src="assets/js/app.js"></script>
+</body>
+</html>

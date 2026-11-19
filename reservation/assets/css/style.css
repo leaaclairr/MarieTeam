@@ -1,0 +1,155 @@
+body {
+    font-family: 'Inter', sans-serif;
+    background-color: #020c1b;
+    color: #ffffff;
+    overflow-x: hidden;
+}
+
+/* Style du canvas des vagues d'arrière-plan */
+#bg-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Style personnalisé des conteneurs en pilule */
+.pill-box {
+    background-color: #073561;
+    border-radius: 10px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    transition: all 0.2s ease;
+}
+
+.pill-label {
+    background-color: #073561;
+    border-radius: 10px;
+    height: 42px;
+    display: flex;
+    align-items: center;
+    padding: 0 16px;
+    font-weight: 700;
+    font-size: 0.92rem;
+    color: #ffffff;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+    white-space: nowrap;
+}
+
+.pill-input {
+    background-color: #073561;
+    border-radius: 10px;
+    height: 42px;
+    width: 100%;
+    color: #ffffff;
+    font-weight: 600;
+    font-size: 0.92rem;
+    padding: 0 14px;
+    outline: none;
+    border: 1px solid transparent;
+    transition: all 0.2s ease;
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+.pill-input:focus {
+    border-color: #38bdf8;
+    box-shadow: 0 0 0 2px rgba(56, 189, 248, 0.3);
+}
+
+.pill-button {
+    background-color: #041d36;
+    border-radius: 10px;
+    height: 42px;
+    font-weight: 700;
+    color: #ffffff;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition: all 0.25s ease;
+}
+
+.pill-button:hover {
+    background-color: #0b467d;
+    box-shadow: 0 0 15px rgba(11, 70, 125, 0.6);
+    transform: translateY(-1px);
+}
+
+.pill-button:active {
+    transform: translateY(0);
+}
+
+/* Style du panneau de résultats à droite */
+.results-panel {
+    background-color: #073561;
+    border-radius: 14px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Flèche personnalisée pour les listes déroulantes */
+.select-wrapper {
+    position: relative;
+    width: 100%;
+}
+
+.select-wrapper::after {
+    content: '▼';
+    font-size: 0.7rem;
+    color: #ffffff;
+    position: absolute;
+    right: 14px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+}
+
+/* États de sélection des cartes d'offres */
+.offer-card {
+    background: rgba(4, 29, 54, 0.7);
+    border: 2px solid transparent;
+    border-radius: 12px;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    backdrop-filter: blur(4px);
+}
+
+.offer-card:hover {
+    border-color: rgba(56, 189, 248, 0.4);
+    background: rgba(7, 43, 80, 0.85);
+    transform: translateY(-2px);
+}
+
+.offer-card.selected {
+    border-color: #38bdf8;
+    background: rgba(11, 70, 125, 0.9);
+    box-shadow: 0 0 20px rgba(56, 189, 248, 0.35);
+}
+
+/* Barre de défilement personnalisée */
+.custom-scroll::-webkit-scrollbar {
+    width: 6px;
+}
+.custom-scroll::-webkit-scrollbar-track {
+    background: rgba(2, 12, 27, 0.3);
+    border-radius: 4px;
+}
+.custom-scroll::-webkit-scrollbar-thumb {
+    background: #0b467d;
+    border-radius: 4px;
+}
+.custom-scroll::-webkit-scrollbar-thumb:hover {
+    background: #38bdf8;
+}
+
+/* Animations d'apparition en fondu */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+.animate-fade-in {
+    animation: fadeIn 0.35s ease-out forwards;
+}
