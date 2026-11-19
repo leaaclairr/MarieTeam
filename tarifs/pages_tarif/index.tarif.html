@@ -1,0 +1,96 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.tarif.css">
+        <script src="script.tarif.js"></script>
+        <title>Nos tarifs - Compagnie Atlantik</title>
+    </head>
+
+    <body>
+
+        <main class="tarifs">
+
+            <header class="intro">
+                <span>Compagnie Atlantik</span>
+                <h1>Nos tarifs</h1>
+                <p>Découvrez nos tarifs selon votre traversée et votre catégorie.</p>
+            </header>
+
+            <!-- CHOIX DE LA LIAISON -->
+
+            <div class="section-label">1. Choisissez votre traversée</div>
+
+            <div class="liaisons">
+                <button class="liaison-btn active" onclick="selectRoute('quiberon',this)">
+                    Quiberon – Le Palais
+                </button>
+
+                <button class="liaison-btn" onclick="selectRoute('vannes',this)">
+                    Vannes – Le Palais
+                </button>
+            </div>
+
+            <!-- CHOIX CATEGORIE -->
+
+            <div class="section-label">2. Choisissez votre catégorie</div>
+
+            <div class="categories">
+
+                <button class="category-btn active" onclick="selectCategory('A',this)">
+                    <strong>A</strong>
+                    <span>Passagers</span>
+                </button>
+
+                <button class="category-btn" onclick="selectCategory('B',this)">
+                    <strong>B</strong>
+                    <span>Véhicules inférieurs à 2 m</span>
+                </button>
+
+                <button class="category-btn" onclick="selectCategory('C',this)">
+                    <strong>C</strong>
+                    <span>Véhicules supérieurs à 2 m</span>
+                </button>
+
+            </div>
+
+            <!-- AFFICHAGE DES TARIFS -->
+
+            <div class="propositions">
+
+                <h2 id="category-title">Tarifs passagers</h2>
+                <div class="subtitle" id="category-description">
+                    Sélectionnez votre profil pour consulter les tarifs.
+                </div>
+
+                <div class="section-label">3. Choisissez votre période</div>
+
+                <div class="periods">
+                    <button class="period-btn active" onclick="selectPeriod(0,this)">
+                        01/09/2026 au 15/06/2027
+                    </button>
+
+                    <button class="period-btn" onclick="selectPeriod(1,this)">
+                        16/06/2027 au 15/09/2027
+                    </button>
+
+                    <button class="period-btn" onclick="selectPeriod(2,this)">
+                        16/09/2027 au 31/05/2028
+                    </button>
+                </div>
+
+                <div class="section-label">4. Nos propositions</div>
+
+                <div class="offers" id="offers"></div>
+
+                <div class="footer-note">
+                    Tarifs exprimés en euros (€).
+                </div>
+
+            </div>
+
+        </main>
+    </body>
+</html>

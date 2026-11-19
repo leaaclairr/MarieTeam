@@ -1,0 +1,215 @@
+* { box-sizing: border-box; }
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-image: url("../../0fond_pages/fond_ecran_bleu.jpg")
+}
+
+.tarifs {
+    max-width: 1100px;
+    margin: auto;
+    padding: 55px 20px;
+}
+
+.intro {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.intro span {
+    color: #1595b5;
+    font-size: 13px;
+    font-weight: bold;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+}
+
+.intro h1 {
+    font-size: 38px;
+    margin: 12px 0;
+}
+
+.intro p {
+    color: #718096;
+}
+
+/* LIAISONS */
+
+.liaisons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    margin-bottom: 35px;
+}
+
+.liaison-btn {
+    background: white;
+    border: 1px solid #dce4ec;
+    color: #18334d;
+    padding: 16px 25px;
+    border-radius: 9px;
+    cursor: pointer;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.liaison-btn.active {
+    background: #123b5b;
+    color: white;
+    border-color: #123b5b;
+}
+
+/* CATEGORIES */
+
+.section-label {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.categories {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.category-btn {
+    background: white;
+    border: 2px solid #e1e8ef;
+    border-radius: 12px;
+    padding: 22px 12px;
+    cursor: pointer;
+    text-align: center;
+    transition: .2s;
+    color: #18334d;
+}
+
+.category-btn:hover {
+    border-color: #1595b5;
+    transform: translateY(-2px);
+}
+
+.category-btn.active {
+    border-color: #1595b5;
+    background: #eaf7fb;
+}
+
+.category-btn strong {
+    display: block;
+    font-size: 23px;
+    margin-bottom: 8px;
+}
+
+.category-btn span {
+    font-size: 13px;
+    color: #718096;
+}
+
+/* PROPOSITIONS */
+
+.propositions {
+    background: white;
+    padding: 25px;
+    border-radius: 13px;
+    box-shadow: 0 5px 25px rgba(0,0,0,.04);
+}
+
+.propositions h2 {
+    font-size: 23px;
+    margin: 0 0 8px;
+}
+
+.subtitle {
+    color: #8493a3;
+    font-size: 14px;
+    margin-bottom: 22px;
+}
+
+.offers {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+}
+
+.offer {
+    border: 1px solid #e4eaf0;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+    transition: .2s;
+}
+
+.offer:hover {
+    border-color: #1595b5;
+    background: #f8fcfd;
+}
+
+.offer-info strong {
+    display: block;
+    font-size: 16px;
+    margin-bottom: 7px;
+}
+
+.offer-info span {
+    font-size: 12px;
+    color: #8795a4;
+}
+
+.offer-price {
+    font-size: 21px;
+    font-weight: bold;
+    color: #1595b5;
+    white-space: nowrap;
+}
+
+.offer-price small {
+    font-size: 12px;
+}
+
+/* PERIODES */
+
+.periods {
+    margin: 25px 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+}
+
+.period-btn {
+    padding: 11px 14px;
+    border-radius: 7px;
+    border: 1px solid #dce4ec;
+    background: white;
+    cursor: pointer;
+    color: #18334d;
+    font-size: 12px;
+}
+
+.period-btn.active {
+    background: #1595b5;
+    color: white;
+    border-color: #1595b5;
+}
+
+
+.footer-note {
+    margin-top: 25px;
+    font-size: 12px;
+    color: #8795a4;
+    text-align: center;
+}
+
+@media(max-width: 650px) {
+    .tarifs { padding: 35px 12px; }
+    .intro h1 { font-size: 29px; }
+    .categories { grid-template-columns: 1fr; }
+    .offers { grid-template-columns: 1fr; }
+    .liaisons { flex-direction: column; }
+    .liaison-btn { width: 100%; }
+    .offer { padding: 16px; }
+}
