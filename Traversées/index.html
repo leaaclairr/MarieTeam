@@ -32,7 +32,7 @@
 
 
 
-<table class="w-full text-left">
+<table class="w-full text-left border-separate border-spacing-y-6">
     <thead>
         <tr>
             <th class="w-[450px] pb-4">Illustration</th>
@@ -64,7 +64,8 @@
         </tr>
     </tbody>
 
-//
+
+
     <tbody>
         <tr>
             <td class="pr-6 align-top">
@@ -87,6 +88,7 @@
             </td>
         </tr>
     </tbody>
+
 
 
 
@@ -115,3 +117,15 @@
 
 
 </table>
+
+<script type="module">
+        import { BookingView } from '../reservation/assets/js/view/BookingView.js';
+
+        document.addEventListener('DOMContentLoaded', () => {
+            const view = new BookingView();
+            view.initCanvasAnimation();
+        });
+    </script>
+
+</body>
+</html>
