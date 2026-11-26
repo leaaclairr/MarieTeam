@@ -1,5 +1,4 @@
 function rechercher() {
-
     const depart = document.getElementById("depart").value;
     const arrivee = document.getElementById("arrivee").value;
 
@@ -15,9 +14,6 @@ function rechercher() {
         return;
     }
 
-    // Redirection vers la page tarif.html
-    window.location.href =
-        "tarifs/pages_tarif/index_tarif.html?depart=" + encodeURIComponent(depart) +
-        "&arrivee=" + encodeURIComponent(arrivee);
-
+    // Redirection simplifiée avec les backticks (`)
+    window.location.href = `../tarifs/pages_tarif/index_tarif.html?depart=${encodeURIComponent(depart)}&arrivee=${encodeURIComponent(arrivee)}`;
 }
