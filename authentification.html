@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MarieTeam - Accueil</title>
+    <!-- Lien vers la feuille de style de l'accueil -->
+    <link rel="stylesheet" href="style_authentification.css">
+</head>
+<body>
+
+    <!-- 1. FENÊTRE MODALE DE CONNEXION (S'affiche à l'arrivée sur la page) -->
+    <div id="fenetreConnexion" class="fond-modal">
+        <div class="contenu-modal">
+            <h2>Espace Client MarieTeam</h2>
+            
+            <div class="champ">
+                <label for="emailUser">Email</label>
+                <input type="email" id="emailUser" placeholder="votre.email@exemple.com">
+            </div>
+
+            <div class="champ">
+                <label for="mdpUser">Mot de passe</label>
+                <input type="password" id="mdpUser" placeholder="********">
+            </div>
+
+            <div class="groupe-boutons">
+                <button class="btn" onclick="seConnecter()">Se connecter</button>
+                <button class="btn btn-secondaire" onclick="fermerModal()">Continuer sans compte</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- 2. CONTENU PRINCIPAL DE LA PAGE D'ACCUEIL -->
+    <div class="container">
+        
+        <!-- En-tête -->
+        <header class="en-tete">
+            <h1>🌊 Bienvenue sur MarieTeam</h1>
+            <p>Votre compagnie maritime pour traverser en toute sérénité.</p>
+        </header>
+
+        <!-- Menu de navigation rapide vers les différentes sections -->
+        <section class="menu-navigation">
+            <h2>Que souhaitez-vous faire ?</h2>
+            
+            <div class="grille-liens">
+                <!-- Lien vers la page Liaison (adapter le chemin selon ton arborescence) -->
+                <a href="../liaison/Liaison.html" class="carte-lien">
+                    <h3>🧭 Nos Liaisons</h3>
+                    <p>Choisir les ports de départ et d'arrivée</p>
+                </a>
+
+                <!-- Lien vers la page Tarifs -->
+                <a href="../tarifs/pages_tarif/index_tarif.html" class="carte-lien">
+                    <h3>💶 Grille des Tarifs</h3>
+                    <p>Consulter les prix par traversée et par catégorie</p>
+                </a>
+
+                <!-- Lien vers Réservation -->
+                <a href="../reservation/index.html" class="carte-lien">
+                    <h3>🚢 Réservations</h3>
+                    <p>Réserver votre traversée en quelques clics</p>
+                </a>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Script JavaScript pour gérer la modale -->
+    <script>
+        // Fonction pour fermer la fenêtre de connexion
+        function fermerModal() {
+            const modal = document.getElementById("fenetreConnexion");
+            modal.style.display = "none";
+        }
+
+        // Fonction de simulation de connexion
+        function seConnecter() {
+            const email = document.getElementById("emailUser").value;
+            if (email === "") {
+                alert("Veuillez renseigner votre email.");
+                return;
+            }
+            alert("Connexion réussie ! Bienvenue " + email);
+            fermerModal();
+        }
+    </script>
+
+</body>
+</html>
