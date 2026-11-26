@@ -1,0 +1,154 @@
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            background:
+                radial-gradient(ellipse at 75% 35%, #075080 0%, transparent 40%),
+                radial-gradient(ellipse at 20% 80%, #06264c 0%, transparent 45%),
+                linear-gradient(135deg, #020819, #001b38, #000719);
+            color: white;
+            padding: 30px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: auto;
+        }
+
+        h1 {
+            font-size: 28px;
+            margin-bottom: 35px;
+            color: white;
+        }
+
+        .formulaire {
+            background: rgba(0, 35, 70, 0.65);
+            padding: 25px;
+            border-radius: 12px;
+            margin-bottom: 35px;
+        }
+
+        .champ {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 18px;
+        }
+
+        .champ label {
+            width: 100px;
+            background: #06416e;
+            padding: 10px;
+            border-radius: 7px;
+            font-weight: bold;
+        }
+
+        .champ select {
+            width: 280px;
+            padding: 11px;
+            border: none;
+            border-radius: 7px;
+            background: #06345c;
+            color: white;
+            font-size: 15px;
+            outline: none;
+        }
+
+        .champ select option {
+            background: #06345c;
+        }
+
+        .btn {
+            margin-top: 10px;
+            margin-left: 115px;
+            padding: 12px 25px;
+            background: #0879b9;
+            color: white;
+            border: none;
+            border-radius: 7px;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .btn:hover {
+            background: #0a9ce8;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            font-size: 21px;
+        }
+
+        .table-container {
+            overflow-x: auto;
+            background: white;
+            padding: 12px;
+            border-radius: 5px;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            color: #222;
+            font-size: 14px;
+            min-width: 650px;
+        }
+
+        th, td {
+            border: 1px solid #999;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background: #e5e5e5;
+            font-weight: bold;
+        }
+
+        .categorie {
+            background: #f1f1f1;
+            font-weight: bold;
+        }
+
+        .type {
+            text-align: left;
+        }
+
+        tbody tr:hover {
+            background: #e8f3fa;
+        }
+
+        .prix {
+            font-weight: bold;
+            color: #064d79;
+        }
+
+        @media (max-width: 600px) {
+            body {
+                padding: 15px;
+            }
+
+            .champ {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .champ label,
+            .champ select {
+                width: 100%;
+            }
+
+            .btn {
+                margin-left: 0;
+                width: 100%;
+            }
+        }
+
+        
